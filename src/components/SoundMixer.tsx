@@ -21,7 +21,7 @@ const SoundMixer: React.FC = () => {
         <h2 className="text-xl font-medium text-primary">Звуковой микшер</h2>
       </header>
       
-      <div className="flex flex-wrap justify-center gap-8 mb-4">
+      <div className="flex justify-between items-start w-full mb-4">
         {sounds.map((sound) => (
           <SoundControl 
             key={sound.id}
