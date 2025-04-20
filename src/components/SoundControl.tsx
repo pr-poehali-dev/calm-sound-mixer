@@ -22,7 +22,7 @@ const SoundControl: React.FC<SoundControlProps> = ({
         onChange={(value) => onVolumeChange(id, value)}
         icon={<span className="text-2xl">{icon}</span>}
       />
-      <span className="text-xs font-medium mt-3 px-2 py-1 bg-secondary rounded-full text-secondary-foreground">
+      <span className="text-xs font-medium mt-3 px-2 py-1 bg-secondary rounded-full text-secondary-foreground w-12">
         {volume}%
       </span>
     </div>
