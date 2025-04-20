@@ -1,0 +1,8 @@
+
+Place your sound files here:
+- rain.mp3
+- fire.mp3
+- wind.mp3
+- waves.mp3
+- birds.mp3
+- stream.mp3
