@@ -28,24 +28,24 @@
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 220 14.3% 16%;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
+    --card: 224 9.8% 20%;
     --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
+    --popover: 0 0% 18%;
     --popover-foreground: 0 0% 95%;
-    --primary: 263.4 70% 50.4%;
+    --primary: 263.4 70% 60%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 240 3.7% 25%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
+    --muted: 0 0% 25%;
+    --muted-foreground: 240 5% 75%;
+    --accent: 12 6.5% 24%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 40%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --border: 240 3.7% 25%;
+    --input: 240 3.7% 25%;
     --ring: 240 4.9% 83.9%;
   }
 }
@@ -70,4 +70,44 @@
   to {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(123, 97, 255, 0.2);
   }
+}
+
+/* Вертикальный ползунок */
+.vertical-slider {
+  height: 160px;
+  width: 10px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+}
+
+.vertical-track {
+  height: 100%;
+  width: 4px;
+  background-color: hsl(var(--secondary));
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-range {
+  width: 4px;
+  background-color: hsl(var(--primary));
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: hsl(var(--primary));
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
