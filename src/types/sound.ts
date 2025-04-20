@@ -34,7 +34,7 @@ export const initialSounds: Sound[] = [
     id: "fire", 
     name: "Огонь", 
     icon: "🔥", 
-    audio: "/sounds/fire.mp3", 
+    audio: "https://cdn.pixabay.com/download/audio/2024/07/05/audio_cb6e14bf87.mp3", 
     volume: 0 
   },
   { 
