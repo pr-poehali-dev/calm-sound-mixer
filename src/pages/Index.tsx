@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-animated-gradient p-4 md:p-8 flex flex-col">
+    <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col">
       <header className="container max-w-6xl mx-auto flex justify-between items-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-primary animate-glow">
           Антистрессер
