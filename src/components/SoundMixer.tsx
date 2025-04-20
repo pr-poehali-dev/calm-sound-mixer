@@ -17,10 +17,6 @@ const SoundMixer: React.FC = () => {
 
   return (
     <div className="bg-background rounded-lg shadow-md p-6 w-full max-w-4xl mx-auto border border-border">
-      <header className="flex items-center justify-between mb-8">
-        <h2 className="text-xl font-medium text-primary">Звуковой микшер</h2>
-      </header>
-      
       <div className="flex justify-between items-start w-full mb-8">
         {sounds.map((sound) => (
           <SoundControl 
