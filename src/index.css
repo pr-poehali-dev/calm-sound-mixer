@@ -86,7 +86,7 @@
 }
 
 .vertical-track {
-  background-color: #f5f5f5;
+  background-color: hsl(var(--secondary));
   width: 10px;
   height: 100%;
   border-radius: 5px;
@@ -104,21 +104,25 @@
 .vertical-thumb {
   width: var(--slider-handle-size);
   height: var(--slider-handle-size);
-  background-color: white;
+  background-color: hsl(var(--background));
   border: 2px solid hsl(var(--primary));
   border-radius: 50%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 50%);
   cursor: grab;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s, background-color 0.1s;
 }
 
 .vertical-thumb:hover {
   background-color: hsl(var(--primary) / 0.1);
+  transform: translate(-50%, 50%) scale(1.1);
 }
 
 .vertical-thumb:active {
   cursor: grabbing;
+  transform: translate(-50%, 50%) scale(1.2);
 }
 
 .sound-icon {
@@ -126,4 +130,9 @@
   justify-content: center;
   margin-bottom: 10px;
   font-size: 20px;
+  transition: transform 0.2s;
+}
+
+.sound-icon:hover {
+  transform: scale(1.1);
 }

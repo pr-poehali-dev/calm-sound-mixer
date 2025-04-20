@@ -16,13 +16,15 @@ const SoundControl: React.FC<SoundControlProps> = ({
   onVolumeChange
 }) => {
   return (
-    <div className="text-center">
+    <div className="text-center flex flex-col items-center">
       <VerticalSlider
         value={volume}
         onChange={(value) => onVolumeChange(id, value)}
         icon={<span className="text-2xl">{icon}</span>}
       />
-      <span className="text-xs text-gray-500 mt-2 block">{volume}%</span>
+      <span className="text-xs font-medium mt-3 px-2 py-1 bg-secondary rounded-full text-secondary-foreground">
+        {volume}%
+      </span>
     </div>
   );
 };

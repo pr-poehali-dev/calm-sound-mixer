@@ -1,59 +1,53 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface VerticalSliderProps {
   value: number;
   onChange: (value: number) => void;
-  min?: number;
-  max?: number;
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
 }
 
-const VerticalSlider: React.FC<VerticalSliderProps> = ({
-  value,
-  onChange,
-  min = 0,
-  max = 100,
-  icon
-}) => {
-  const [isDragging, setIsDragging] = useState(false);
+const VerticalSlider: React.FC<VerticalSliderProps> = ({ value, onChange, icon }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const calculateValue = (clientY: number) => {
-    if (!sliderRef.current) return value;
+  const calculateSliderValue = (clientY: number) => {
+    if (!sliderRef.current) return;
     
     const rect = sliderRef.current.getBoundingClientRect();
     const height = rect.height;
-    const relativeY = clientY - rect.top;
+    const offsetY = clientY - rect.top;
     
-    // Инвертированное значение, поскольку верх это 100%, низ это 0%
-    let percentage = 1 - Math.min(Math.max(relativeY / height, 0), 1);
-    let newValue = Math.round(percentage * (max - min) + min);
+    // Инвертируем значение, чтобы верх был максимальным
+    let newValue = Math.round(100 - (offsetY / height) * 100);
     
-    return newValue;
+    // Ограничим значение в пределах 0-100
+    newValue = Math.max(0, Math.min(100, newValue));
+    
+    onChange(newValue);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
-    onChange(calculateValue(e.clientY));
+    calculateSliderValue(e.clientY);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
-    onChange(calculateValue(e.touches[0].clientY));
+    calculateSliderValue(e.touches[0].clientY);
   };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isDragging) {
-        onChange(calculateValue(e.clientY));
+        calculateSliderValue(e.clientY);
       }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (isDragging && e.touches[0]) {
-        onChange(calculateValue(e.touches[0].clientY));
+        calculateSliderValue(e.touches[0].clientY);
       }
     };
 
@@ -63,38 +57,38 @@ const VerticalSlider: React.FC<VerticalSliderProps> = ({
 
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
       window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("mouseup", handleMouseUp);
       window.addEventListener("touchend", handleMouseUp);
     }
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("touchend", handleMouseUp);
     };
   }, [isDragging, onChange]);
 
-  const percentValue = ((value - min) / (max - min)) * 100;
-
   return (
     <div className="flex flex-col items-center">
-      {icon && <div className="sound-icon mb-2">{icon}</div>}
+      <div className="sound-icon mb-4 text-primary">
+        {icon}
+      </div>
       <div 
         ref={sliderRef}
         className="vertical-slider relative"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="vertical-track absolute inset-0"></div>
+        <div className="vertical-track"></div>
         <div 
-          className="vertical-range"
-          style={{ height: `${percentValue}%` }}
+          className="vertical-range" 
+          style={{ height: `${value}%` }}
         ></div>
         <div 
           className="vertical-thumb"
-          style={{ bottom: `${percentValue}%` }}
+          style={{ bottom: `${value}%` }}
         ></div>
       </div>
     </div>
