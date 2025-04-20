@@ -4,65 +4,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 252 87% 74%; /* Обновленный фиолетовый цвет */
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 252 87% 74%; /* Обновленный фиолетовый цвет */
-
+    --background: 240 10% 95%;
+    --foreground: 240 10% 10%;
+    --card: 240 10% 100%;
+    --card-foreground: 240 10% 10%;
+    --popover: 240 10% 100%;
+    --popover-foreground: 240 10% 10%;
+    --primary: 265 89% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 90%;
+    --secondary-foreground: 240 10% 30%;
+    --muted: 240 10% 92%;
+    --muted-foreground: 240 10% 45%;
+    --accent: 265 89% 90%;
+    --accent-foreground: 265 89% 30%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 10% 82%;
+    --input: 240 10% 82%;
+    --ring: 265 89% 70%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 252 87% 74%; /* Обновленный фиолетовый цвет */
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 252 87% 60%; /* Немного темнее для темной темы */
+    --background: 240 10% 10%;
+    --foreground: 240 10% 95%;
+    --card: 240 10% 15%;
+    --card-foreground: 240 10% 95%;
+    --popover: 240 10% 15%;
+    --popover-foreground: 240 10% 95%;
+    --primary: 265 89% 70%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 20%;
+    --secondary-foreground: 240 10% 85%;
+    --muted: 240 10% 20%;
+    --muted-foreground: 240 10% 70%;
+    --accent: 265 89% 30%;
+    --accent-foreground: 265 89% 90%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 10% 25%;
+    --input: 240 10% 25%;
+    --ring: 265 89% 70%;
   }
 }
 
@@ -74,7 +57,78 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  html, body, #root {
-    height: 100%;
-  }
+}
+
+/* Стили для вертикального ползунка */
+.vertical-slider {
+  height: 150px;
+  width: 26px;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-track {
+  width: 5px;
+  height: 100%;
+  background-color: hsl(var(--secondary));
+  border-radius: 4px;
+  position: absolute;
+}
+
+.vertical-range {
+  width: 5px;
+  background-color: hsl(var(--primary));
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.vertical-thumb {
+  width: 18px;
+  height: 18px;
+  background-color: hsl(var(--primary));
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.1s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.vertical-thumb:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.vertical-slider:active .vertical-thumb {
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* Стили для компонента SoundControl */
+.sound-icon {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.sound-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Для мастер-контрола */
+.master-volume-control {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: hsl(var(--secondary));
+}
+
+html, body, #root {
+  height: 100%;
 }
