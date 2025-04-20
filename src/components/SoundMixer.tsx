@@ -1,23 +1,14 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Slider } from "@/components/ui/slider";
+import VerticalSlider from "./VerticalSlider";
 import { Button } from "@/components/ui/button";
-import { 
-  Cloud, 
-  Flame, 
-  Wind, 
-  Waves, 
-  Music, 
-  Bird, 
-  Volume2,
-  VolumeX
-} from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 
 // Типы звуков
 interface Sound {
   id: string;
   name: string;
-  icon: React.ReactNode;
+  icon: string;
   audio: string;
   volume: number;
 }
@@ -28,43 +19,57 @@ const SoundMixer = () => {
     { 
       id: "rain", 
       name: "Дождь", 
-      icon: <Cloud className="w-5 h-5" />, 
+      icon: "☁️", 
       audio: "/sounds/rain.mp3", 
-      volume: 0 
-    },
-    { 
-      id: "fire", 
-      name: "Огонь", 
-      icon: <Flame className="w-5 h-5" />, 
-      audio: "/sounds/fire.mp3", 
       volume: 0 
     },
     { 
       id: "wind", 
       name: "Ветер", 
-      icon: <Wind className="w-5 h-5" />, 
+      icon: "💨", 
       audio: "/sounds/wind.mp3", 
       volume: 0 
     },
     { 
-      id: "waves", 
-      name: "Волны", 
-      icon: <Waves className="w-5 h-5" />, 
-      audio: "/sounds/waves.mp3", 
+      id: "lightning", 
+      name: "Гроза", 
+      icon: "⚡", 
+      audio: "/sounds/lightning.mp3", 
       volume: 0 
     },
     { 
-      id: "birds", 
-      name: "Птицы", 
-      icon: <Bird className="w-5 h-5" />, 
-      audio: "/sounds/birds.mp3", 
+      id: "fire", 
+      name: "Огонь", 
+      icon: "🔥", 
+      audio: "/sounds/fire.mp3", 
       volume: 0 
     },
     { 
       id: "stream", 
       name: "Ручей", 
-      icon: <Music className="w-5 h-5" />, 
+      icon: "💧", 
       audio: "/sounds/stream.mp3", 
+      volume: 0 
+    },
+    { 
+      id: "frog", 
+      name: "Лягушка", 
+      icon: "🐸", 
+      audio: "/sounds/frog.mp3", 
+      volume: 0 
+    },
+    { 
+      id: "birds", 
+      name: "Птицы", 
+      icon: "🐦", 
+      audio: "/sounds/birds.mp3", 
+      volume: 0 
+    },
+    { 
+      id: "cicada", 
+      name: "Цикада", 
+      icon: "🦗", 
+      audio: "/sounds/cicada.mp3", 
       volume: 0 
     },
   ]);
@@ -116,10 +121,10 @@ const SoundMixer = () => {
   }, [sounds, masterVolume, isMuted]);
 
   // Изменение громкости для отдельного звука
-  const handleVolumeChange = (id: string, newVolume: number[]) => {
+  const handleVolumeChange = (id: string, newVolume: number) => {
     setSounds(prevSounds => 
       prevSounds.map(sound => 
-        sound.id === id ? { ...sound, volume: newVolume[0] } : sound
+        sound.id === id ? { ...sound, volume: newVolume } : sound
       )
     );
   };
@@ -136,53 +141,66 @@ const SoundMixer = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-center mb-8 text-primary">Миксер Успокаивающих Звуков</h1>
-      
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-lg font-medium">Общая громкость</span>
+    <div className="bg-[#f9f9f9] rounded-lg shadow p-4 w-full max-w-4xl mx-auto">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-medium text-primary">Звуковой микшер</h2>
+        <div className="flex items-center">
           <Button 
             variant="ghost" 
             size="icon" 
             onClick={toggleMute}
-            className="ml-2"
+            className="mr-2"
           >
             {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </Button>
+          <div className="text-sm font-medium">{masterVolume}%</div>
         </div>
-        <Slider 
-          value={[isMuted ? 0 : masterVolume]} 
-          min={0} 
-          max={100} 
-          step={1}
-          onValueChange={(value) => {
-            if (value[0] > 0 && isMuted) setIsMuted(false);
-            setMasterVolume(value[0]);
-          }}
-          className="mb-8"
-        />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex flex-wrap justify-center gap-8 mt-8 mb-4">
         {sounds.map((sound) => (
-          <div key={sound.id} className="bg-gray-50 rounded-md p-4">
-            <div className="flex items-center mb-2">
-              <div className="p-2 bg-primary/10 rounded-full mr-3">
-                {sound.icon}
-              </div>
-              <span className="font-medium">{sound.name}</span>
-              <span className="ml-auto text-sm text-gray-500">{sound.volume}%</span>
-            </div>
-            <Slider
-              value={[sound.volume]}
-              min={0}
-              max={100}
-              step={1}
-              onValueChange={(value) => handleVolumeChange(sound.id, value)}
+          <div key={sound.id} className="text-center">
+            <VerticalSlider
+              value={sound.volume}
+              onChange={(value) => handleVolumeChange(sound.id, value)}
+              icon={<span className="text-2xl">{sound.icon}</span>}
             />
           </div>
         ))}
+      </div>
+      
+      <div className="grid grid-cols-8 gap-8 mt-2 mb-6 px-4">
+        {sounds.map((sound) => (
+          <div key={sound.id} className="text-center">
+            <span className="text-xs text-gray-500">{sound.volume}%</span>
+          </div>
+        ))}
+      </div>
+      
+      <div className="p-4 bg-gray-100 rounded-lg mt-4">
+        <div className="flex items-center mb-2">
+          <span className="text-sm font-medium mr-3">Общая громкость</span>
+          <span className="ml-auto text-xs text-gray-500">{masterVolume}%</span>
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value={isMuted ? 0 : masterVolume}
+          onChange={(e) => {
+            const val = parseInt(e.target.value);
+            if (val > 0 && isMuted) setIsMuted(false);
+            setMasterVolume(val);
+          }}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+      </div>
+      
+      <div className="mt-6 pt-6 border-t border-gray-200">
+        <p className="text-center text-xs text-gray-400">
+          Используйте ползунки для настройки идеальной звуковой атмосферы
+        </p>
       </div>
     </div>
   );
