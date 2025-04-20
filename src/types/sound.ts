@@ -13,21 +13,14 @@ export const initialSounds: Sound[] = [
     id: "rain", 
     name: "Дождь", 
     icon: "☁️", 
-    audio: "/sounds/rain.mp3", 
+    audio: "https://cdn.pixabay.com/download/audio/2024/05/21/audio_08ef8717b4.mp3", 
     volume: 0 
   },
   { 
     id: "wind", 
     name: "Ветер", 
     icon: "💨", 
-    audio: "/sounds/wind.mp3", 
-    volume: 0 
-  },
-  { 
-    id: "lightning", 
-    name: "Гроза", 
-    icon: "⚡", 
-    audio: "/sounds/lightning.mp3", 
+    audio: "https://cdn.pixabay.com/download/audio/2025/02/15/audio_a4554362e4.mp3", 
     volume: 0 
   },
   { 
@@ -38,31 +31,17 @@ export const initialSounds: Sound[] = [
     volume: 0 
   },
   { 
-    id: "stream", 
-    name: "Ручей", 
-    icon: "💧", 
-    audio: "/sounds/stream.mp3", 
+    id: "birds", 
+    name: "Птицы", 
+    icon: "🐦", 
+    audio: "https://cdn.pixabay.com/download/audio/2023/10/28/audio_07f4ccc110.mp3", 
     volume: 0 
   },
   { 
     id: "frog", 
-    name: "Лягушка", 
+    name: "Лягушки", 
     icon: "🐸", 
-    audio: "/sounds/frog.mp3", 
+    audio: "https://cdn.pixabay.com/download/audio/2023/05/31/audio_4e80e355d3.mp3", 
     volume: 0 
-  },
-  { 
-    id: "birds", 
-    name: "Птицы", 
-    icon: "🐦", 
-    audio: "/sounds/birds.mp3", 
-    volume: 0 
-  },
-  { 
-    id: "cicada", 
-    name: "Цикада", 
-    icon: "🦗", 
-    audio: "/sounds/cicada.mp3", 
-    volume: 0 
-  },
+  }
 ];
