@@ -12,7 +12,7 @@ export const initialSounds: Sound[] = [
   { 
     id: "rain", 
     name: "Дождь", 
-    icon: "☁️", 
+    icon: "🌧️", 
     audio: "https://cdn.pixabay.com/download/audio/2024/05/21/audio_08ef8717b4.mp3", 
     volume: 0 
   },
