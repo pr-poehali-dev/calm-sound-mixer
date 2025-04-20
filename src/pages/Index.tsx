@@ -1,21 +1,24 @@
 
 import SoundMixer from "@/components/SoundMixer";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-6">
-          <h1 className="text-3xl font-bold mb-2 text-primary">Звуковой Миксер</h1>
-          <p className="text-md text-gray-600">
-            Создайте свою идеальную звуковую атмосферу для отдыха и релаксации
-          </p>
+    <div className="min-h-screen bg-background p-4 md:p-8">
+      <div className="container max-w-6xl mx-auto">
+        <header className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-primary">
+            Звуковой микшер
+          </h1>
+          <ThemeToggle />
         </header>
         
-        <SoundMixer />
+        <main>
+          <SoundMixer />
+        </main>
         
-        <footer className="mt-10 text-center text-gray-500 text-xs">
-          <p>Для лучшего эффекта рекомендуется использовать наушники 🎧</p>
+        <footer className="mt-12 text-center text-sm text-muted-foreground">
+          <p>Создайте свою идеальную звуковую атмосферу</p>
         </footer>
       </div>
     </div>
