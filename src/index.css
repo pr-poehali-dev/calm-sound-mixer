@@ -59,7 +59,7 @@
   }
 }
 
-/* Анимированный градиент для фона */
+/* Анимированный градиент для фона (медленнее и темнее) */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -74,12 +74,12 @@
 
 .bg-animated-gradient {
   background: linear-gradient(-45deg, 
-    hsl(var(--background) / 0.8), 
-    hsl(var(--muted) / 0.8), 
-    hsl(265 80% 85% / 0.5), 
-    hsl(280 70% 85% / 0.5));
+    hsl(var(--background) / 0.9), 
+    hsl(var(--muted) / 0.9), 
+    hsl(265 80% 75% / 0.7), 
+    hsl(280 70% 75% / 0.7));
   background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+  animation: gradientAnimation 30s ease infinite;
 }
 
 /* Анимация свечения для заголовка */
