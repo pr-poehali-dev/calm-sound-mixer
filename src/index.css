@@ -57,6 +57,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Отключаем скролл на мобильных устройствах */
+  @media (max-width: 768px) {
+    html, body {
+      overflow: hidden;
+      height: 100%;
+      position: fixed;
+      width: 100%;
+    }
+  }
 }
 
 .animate-glow {
@@ -79,6 +89,32 @@
   margin: 0 auto;
   position: relative;
   cursor: pointer;
+}
+
+/* Увеличенный ползунок для мобильных устройств */
+@media (max-width: 768px) {
+  .vertical-slider {
+    height: 180px;
+    width: 20px;
+  }
+  
+  .vertical-track {
+    width: 8px !important;
+  }
+  
+  .vertical-range {
+    width: 8px !important;
+  }
+  
+  .vertical-thumb {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  .sound-icon {
+    font-size: 1.75rem;
+    margin-bottom: 1rem !important;
+  }
 }
 
 .vertical-track {

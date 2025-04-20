@@ -4,6 +4,7 @@ import SoundControl from "./SoundControl";
 import MasterVolumeControl from "./MasterVolumeControl";
 import { useAudioManager } from "@/hooks/useAudioManager";
 import { initialSounds } from "@/types/sound";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const SoundMixer: React.FC = () => {
   const {
@@ -14,10 +15,12 @@ const SoundMixer: React.FC = () => {
     toggleMute,
     handleMasterVolumeChange
   } = useAudioManager(initialSounds);
+  
+  const isMobile = useIsMobile();
 
   return (
     <div className="bg-background rounded-lg shadow-md p-6 w-full max-w-4xl mx-auto border border-border">
-      <div className="flex justify-between items-start w-full mb-8">
+      <div className={`flex ${isMobile ? 'justify-around' : 'justify-between'} items-start w-full mb-8 ${isMobile ? 'overflow-x-auto' : ''}`}>
         {sounds.map((sound) => (
           <SoundControl 
             key={sound.id}
